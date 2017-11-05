@@ -4,9 +4,9 @@
       <b-row>
         <b-col offset-lg="2" lg="8">
           <b-input-group>
-            <b-form-input v-model="daysToAdd" type="number"></b-form-input>
+            <b-form-input v-model="daysToAdd" @keyup.enter.native="runAgain" type="number"></b-form-input>
             <b-input-group-button slot="right">
-              <b-button variant="success" v-on:click="runAgain">
+              <b-button variant="success " v-on:click="runAgain">
                 Run
               </b-button>
             </b-input-group-button>
@@ -14,13 +14,13 @@
         </b-col>
       </b-row>
       <b-row>
-        <b-col offset-lg="2" lg="8">
+        <b-col offset-lg="2 " lg="8 ">
           <hr>
         </b-col>
       </b-row>
       <b-row>
-        <b-col offset-lg="2" lg="8">
-          <b-alert variant="info" dismissible :show="showDismissibleAlert" @dismissed="showDismissibleAlert=false">
+        <b-col offset-lg="2 " lg="8 ">
+          <b-alert variant="info " dismissible :show="showDismissibleAlert " @dismissed="showDismissibleAlert=false ">
             <h1>{{ msg }}</h1>
           </b-alert>
         </b-col>
