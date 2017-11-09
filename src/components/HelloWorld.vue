@@ -3,26 +3,22 @@
     <b-container class="bv-example-row">
       <b-row>
         <b-col offset-lg="2" lg="8">
-          <b-input-group>
-            <b-form-input v-model="daysToAdd" @keyup.enter.native="runAgain" type="number"></b-form-input>
-            <b-input-group-button slot="right">
-              <b-button variant="success " v-on:click="runAgain">
-                Run
-              </b-button>
-            </b-input-group-button>
-          </b-input-group>
-        </b-col>
-      </b-row>
-      <b-row>
-        <b-col offset-lg="2 " lg="8 ">
-          <hr>
-        </b-col>
-      </b-row>
-      <b-row>
-        <b-col offset-lg="2 " lg="8 ">
-          <b-alert variant="info " dismissible :show="showDismissibleAlert " @dismissed="showDismissibleAlert=false ">
-            <h1>{{ msg }}</h1>
-          </b-alert>
+          <b-form>
+            <b-form-group label="Random Date">
+              <b-input-group>
+                <b-form-input v-model="daysToAdd" @keyup.enter.native="runAgain" type="number"></b-form-input>
+                <b-input-group-button slot="right">
+                  <b-button variant="success " v-on:click="runAgain">
+                    Run
+                  </b-button>
+                </b-input-group-button>
+              </b-input-group>
+              <hr>
+              <b-alert variant="info " dismissible :show="showDismissibleAlert " @dismissed="showDismissibleAlert=false ">
+                <h2>{{ msg }}</h2>
+              </b-alert>
+            </b-form-group>
+          </b-form>
         </b-col>
       </b-row>
     </b-container>
@@ -65,22 +61,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-/* h1,
-h2 {
-  font-weight: normal;
-}
-
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-
-a {
-  color: #42b983;
+/* .hello {
+  padding: 20px;
 } */
 </style>
