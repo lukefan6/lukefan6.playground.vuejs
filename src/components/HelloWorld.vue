@@ -29,33 +29,47 @@
 import * as moment from 'moment';
 
 function getNextRandomNumber(start, end) {
-  const base = Math.random() * end;
-  return Math.floor(base + start);
+    const base = Math.random() * end;
+    return Math.floor(base + start);
 }
 
 function getNextRandomDate(baseline, daysToAdd) {
-  const nextAddedHours = getNextRandomNumber(0, daysToAdd * 24);
+    const nextAddedHours = getNextRandomNumber(0, daysToAdd * 24);
 
-  return moment(baseline).add(nextAddedHours, 'hours');
+    return moment(baseline).add(nextAddedHours, 'hours');
 }
 
 export default {
-  name: 'HelloWorld',
-  data() {
-    return {
-      msg: '',
-      daysToAdd: 7,
-      showDismissibleAlert: false,
-    };
-  },
-  // define methods under the `methods` object
-  methods: {
-    runAgain() {
-      const date = getNextRandomDate(new Date(), this.daysToAdd);
-      this.msg = moment(date).format('YYYY-MM-DD HH:00');
-      this.showDismissibleAlert = true;
+    name: 'HelloWorld',
+    data() {
+        return {
+            msg: '',
+            daysToAdd: 7,
+            showDismissibleAlert: false,
+            afterHour: 10,
+            beforeHour: 23,
+        };
     },
-  },
+    // define methods under the `methods` object
+    methods: {
+        runAgain() {
+            let shouldRetry = true;
+            let date = moment();
+            while (shouldRetry) {
+                date = getNextRandomDate(new Date(), this.daysToAdd);
+                shouldRetry = this.isInRange(date) === false;
+            }
+
+            this.msg = moment(date).format('YYYY-MM-DD HH:00');
+            this.showDismissibleAlert = true;
+        },
+        isInRange(date) {
+            const from = moment(date).hour(this.afterHour);
+            const to = moment(date).hour(this.beforeHour);
+
+            return moment(date).isBetween(from, to);
+        },
+    },
 };
 </script>
 
