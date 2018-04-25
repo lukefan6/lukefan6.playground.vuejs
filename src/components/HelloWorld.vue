@@ -16,6 +16,7 @@
               <hr>
               <b-alert variant="info " dismissible :show="showDismissibleAlert " @dismissed="showDismissibleAlert=false ">
                 <h2>{{ msg }}</h2>
+                <h3>{{ copiedMsg }}</h3>
               </b-alert>
             </b-form-group>
           </b-form>
@@ -44,6 +45,7 @@ export default {
     data() {
         return {
             msg: '',
+            copiedMsg: '',
             daysToAdd: 7,
             showDismissibleAlert: false,
             afterHour: 10,
@@ -62,6 +64,10 @@ export default {
 
             this.msg = moment(date).format('YYYY-MM-DD HH:00');
             this.showDismissibleAlert = true;
+
+            this.$copyText(this.msg).then(() => {
+                this.copiedMsg += ' Copied!';
+            });
         },
         isInRange(date) {
             const from = moment(date).hour(this.afterHour);
